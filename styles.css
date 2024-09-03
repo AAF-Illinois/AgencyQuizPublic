@@ -28,12 +28,12 @@ body {
     text-decoration: none;
     font-size: 1.2em;
     font-weight: bold;
-    border: 2px solid purple;
+    border: 2px solid blue;
     transition: background-color 0.3s, color 0.3s;
 }
 
 .quiz-button:hover {
-    background-color: purple;
+    background-color: #2FC3E5;
     color: white;
 }
 
@@ -86,6 +86,6 @@ body {
 }
 
 .social-icons a:hover {
-    color: #13294b;
+    color: #2FC3E5;
 }
 
