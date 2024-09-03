@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <a href="#home"><i class="fas fa-home"></i></a>
+            <a href="#resume"><i class="fas fa-file-alt"></i></a>
+            <a href="#contact"><i class="fas fa-envelope"></i></a>
+        </div>
+
+        <div class="main-content">
+            <section id="home" class="section">
+                <div class="content">
+                    <h1>Hey, and Welcome To <span class="highlight">American Advertising Federation</span></h1>
+                    <p>With the vast hub of <span class="highlight">agencies</span> we offer, it's natural to feel a bit <span class="highlight">intimidated</span>. No worries, this short quiz helps us tabulate what works best for you and gives you your top three <span class="highlight">agencies</span> in real time. Experiment fearlessly with <span class="highlight">aaf</span>.</p>
+                    <img src="pictures/images (2).png" alt="Your Photo" class="photo">
+                </div>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/aafillinois/" target="_blank" class="instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/american-advertising-federation-at-illinois/" target="_blank" class="linkedin">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+                <div id="dynamic-text" class="dynamic-text">
+                    <span id="typed"></span>
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <div style="text-align: center; margin-top: 20px;">
+                        <a href="index.html" class="quiz-button">Click Here For The Quiz!</a>
+                    </div>
+                                    </div>
+            </section>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            new Typed('#typed', {
+                strings: ["Welcome Creatives :)", "Welcome Advertisers :)", "Welcome Video Editors :)", 
+                          "Welcome Problem Solvers :)", "Welcome Leaders :)", "Welcome Graphic Designers :)", "Welcome Photographers :)", "Welcome Social Media Managers :)", "Welcome Strategists :)"],
+                typeSpeed: 50,
+                backSpeed: 50,
+                backDelay: 2000,
+                loop: true,
+                showCursor: true,
+                cursorChar: '|'
+            });
+        });
+    </script>
+</body>
+</html>

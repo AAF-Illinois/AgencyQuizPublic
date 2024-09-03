@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agency4U Builder</title>
+    <style>
+        body { 
+            font-family: 'Raleway', sans-serif; 
+            margin: 20px; 
+            background-color: black; 
+            color: white; 
+        }
+        form { 
+            max-width: 600px; 
+            margin: 40px auto; 
+            padding: 20px;
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            text-align: center;
+        }
+        h1 { 
+            text-align: center; 
+            margin-bottom: 40px; 
+        }
+        .question { 
+            margin-bottom: 50px;  /* Increased spacing */
+            text-align: left; 
+            font-family: 'Raleway', sans-serif; 
+        }
+        .question h3 { 
+            margin-bottom: 10px; 
+        }
+        .error { 
+            color: red; 
+            margin-bottom: 10px; 
+        }
+        #results {
+            margin-top: 40px;
+            text-align: center;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #000000;  /* Changed to black */
+            border: 1px solid white;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #333333;  /* Slightly lighter black for hover effect */
+        }
+    </style>
+</head>
+<body>
+    <h1>Find Your Perfect Agency</h1>
+    <form id="agency-form">
+        <div id="questions-container">
+            <!-- Questions will be dynamically added here -->
+        </div>
+        <div id="error-message" class="error" style="display: none;">Please answer all the questions.</div>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="results"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const agencies = {
+                "AdBuzz": "https://www.aafillinois.com/adbuzz",
+                "NSAC": "https://www.aafillinois.com/nsac",
+                "AdLab": "https://www.aafillinois.com/adlab",
+                "Hyperlink": "https://www.aafillinois.com/hyperlink",
+                "CTRL+V": "https://www.aafillinois.com/ctrlv",
+                "Addys": "https://www.aafillinois.com/addys",
+                "Build It": "https://www.aafillinois.com/buildit",
+                "Mosiac": "https://www.aafillinois.com/communityoutreach",
+                "DEI Agency": "https://www.aafillinois.com/dei",
+                "Midnight Oil": "https://www.aafillinois.com/midnightoil",
+                "OTH": "https://www.aafillinois.com/onthehouse",
+                "RSVP": "https://www.aafillinois.com/rsvp"
+            };
+
+            const questions = [
+            {
+                question: "What aspect of advertising excites you the most?",
+                options: [
+                    { answer: "Building innovative campaigns from scratch", agency: "Build It" },
+                    { answer: "Collaborating on professional-level projects with a real-world impact", agency: "NSAC" },
+                    { answer: "Exploring creative endeavors through video editing and production", agency: "CTRL+V" },
+                    { answer: "Developing engaging social media strategies", agency: "Hyperlink" }
+                ]
+            },
+            {
+                question: "What’s one skill you’re super proud of?",
+                options: [
+                    { answer: "Crafting compelling copy that tells a story", agency: "AdBuzz" },
+                    { answer: "Bringing ideas to life through acting and performance", agency: "Addys" },
+                    { answer: "Conducting thorough research and presenting insights", agency: "NSAC" },
+                    { answer: "Editing and producing high-quality video content", agency: "CTRL+V" },
+                    {answer : "Research and analytics", agency : "Mosiac"}
+                ]
+            },
+            {
+                question: "How do you prefer to work on projects?",
+                options: [
+                    { answer: "Leading the charge with innovative ideas", agency: "Build It" },
+                    { answer: "Diving deep into research and strategy development", agency: "NSAC" },
+                    { answer: "Collaborating with a diverse team to achieve creative outcomes", agency: "RSVP" },
+                    { answer: "Working independently to create visually stunning content", agency: "AdLab" }
+                ]
+            },
+            {
+                question: "What kind of impact do you want your work to have?",
+                options: [
+                    { answer: "Learn and utilize SEO to increase a companys reach", agency: "Mosiac" },
+                    { answer: "Bringing attention to important social causes", agency: "DEI Agency" },
+                    { answer: "Providing clients with memorable, experience-driven marketing", agency: "RSVP" },
+                    { answer: "Producing polished content that stands out in the market", agency: "AdBuzz" }
+                ]
+            },
+            {
+                question: "Which type of environment do you thrive in?",
+                options: [
+                    { answer: "A fast-paced, high-pressure setting where you can shine", agency: "Midnight Oil" },
+                    { answer: "A structured environment with clear goals and outcomes", agency: "NSAC" },
+                    { answer: "A supportive space that fosters creativity and learning", agency: "AdLab" },
+                    { answer: "A client-focused setting with a collaborative spirit", agency: "Mosiac" }
+                ]
+            },
+            {
+                question: "What do you find most rewarding about working in advertising?",
+                options: [
+                    { answer: "Seeing a campaign come together from concept to execution", agency: "Build It" },
+                    { answer: "Making a tangible difference through socially conscious work", agency: "DEI Agency" },
+                    { answer: "Creating work that’s visually captivating and highly engaging", agency: "Hyperlink" },
+                    { answer: "Winning awards and being recognized for your creative efforts", agency: "Addys" }
+                ]
+            },
+            {
+                question: "Which of these roles do you see yourself excelling in?",
+                options: [
+                    { answer: "Creative Director or Campaign Strategist", agency: "Build It" },
+                    { answer: "Public Relations or Content Specialist", agency: "AdBuzz" },
+                    { answer: "Researcher or Media Planner", agency: "NSAC" },
+                    { answer: "Videographer or Editor", agency: "CTRL+V" }
+                ]
+            },
+            {
+                question: "How do you approach challenges in a project?",
+                options: [
+                    { answer: "By brainstorming multiple creative solutions", agency: "AdLab" },
+                    { answer: "By digging into research and data for the best strategy", agency: "NSAC" },
+                    { answer: "By collaborating closely with team members to refine ideas", agency: "RSVP" },
+                    { answer: "By testing out different approaches until you find what works best", agency: "Build It" }
+                ]
+            }
+        ];
+
+            // Add questions to the form
+            const questionsContainer = document.getElementById('questions-container');
+            questions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                questionDiv.innerHTML = `<h3>Question ${index + 1}: ${q.question}</h3>`;
+                q.options.forEach((option, optIndex) => {
+                    questionDiv.innerHTML += `
+                        <label>
+                            <input type="radio" name="question${index}" value="${option.agency}" />
+                            ${option.answer}
+                        </label><br/>`;
+                });
+                questionsContainer.appendChild(questionDiv);
+            });
+
+            // Handle form submission
+            document.getElementById('agency-form').addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                let scores = {};
+                let allAnswered = true;
+
+                questions.forEach((q, index) => {
+                    const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
+                    if (selectedOption) {
+                        const agency = selectedOption.value;
+                        if (!scores[agency]) {
+                            scores[agency] = 0;
+                        }
+                        scores[agency]++;
+                    } else {
+                        allAnswered = false;
+                    }
+                });
+
+                if (!allAnswered) {
+                    document.getElementById('error-message').style.display = 'block';
+                    return;
+                } else {
+                    document.getElementById('error-message').style.display = 'none';
+                }
+
+                // Sort scores and get the top 3 agencies
+                const sortedAgencies = Object.entries(scores).sort((a, b) => b[1] - a[1]).slice(0, 3);
+
+                // Store results in local storage
+                localStorage.setItem('agencyResults', JSON.stringify(sortedAgencies.map(([agency, score]) => ({
+                    name: agency,
+                    link: agencies[agency]
+                }))));
+
+                // Redirect to results page
+                window.location.href = 'results.html';
+            });
+        });
+    </script>
+</body>
+</html>

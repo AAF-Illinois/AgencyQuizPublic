@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Top Agencies</title>
+    <style>
+        body {
+            font-family: 'Raleway', sans-serif;
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            margin-bottom: 40px;
+        }
+        .agency {
+            margin: 20px 0;
+        }
+        .agency a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .agency a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Your Top Agencies</h1>
+    <div id="agency-results">
+        <!-- Top agencies will be displayed here -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const agencyResults = JSON.parse(localStorage.getItem('agencyResults'));
+            const resultsContainer = document.getElementById('agency-results');
+
+            if (agencyResults && agencyResults.length > 0) {
+                agencyResults.forEach(result => {
+                    const agencyDiv = document.createElement('div');
+                    agencyDiv.className = 'agency';
+                    agencyDiv.innerHTML = `<a href="${result.link}" target="_blank">${result.name}</a>`;
+                    resultsContainer.appendChild(agencyDiv);
+                });
+            } else {
+                resultsContainer.innerHTML = '<p>No results available. Please retake the quiz.</p>';
+            }
+        });
+    </script>
+</body>
+</html>
